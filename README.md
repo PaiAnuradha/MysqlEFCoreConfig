@@ -1,5 +1,5 @@
 This is my first application in ASP.net Web API.
-This application just checks whether the database connection is successful. 
+This application connects to the database and gets the user details. 
 
 - Approach - Database First
 
