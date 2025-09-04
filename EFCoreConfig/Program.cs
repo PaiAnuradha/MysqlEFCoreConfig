@@ -1,13 +1,20 @@
+using EFCoreConfig;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddDbContext<ApplicationDBContext>(options =>
+    options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"), new MySqlServerVersion("9.4.0")));
 
 var app = builder.Build();
+
+app.MapGet("/", () => "Hello World!");
+app.MapGet("/users", (ApplicationDBContext db) =>
+{
+    return db.User.ToList();
+});
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
