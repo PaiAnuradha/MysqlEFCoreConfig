@@ -5,5 +5,5 @@ Technology
 
 Approach - Database First
 
-This is my first application in ASP.net Web API
+This is my first application in ASP.net Web API.
 This application just checks whether the database connection is successful. 
